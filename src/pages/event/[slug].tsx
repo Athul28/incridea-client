@@ -180,118 +180,56 @@ const Page = ({ event, error }: Props) => {
       )}
       {event && (
         <section
-          className={`no-scrollbar mx-auto flex h-screen max-w-7xl flex-col gap-5 overflow-y-scroll text-white lg:flex-row lg:overflow-y-hidden`}
+          className={`no-scrollbar mx-auto flex h-screen max-w-7xl flex-col gap-5 overflow-y-scroll text-white lg:flex-col`}
         >
-          <div
-            className={`lg:no-scrollbar overflow-x-visible px-3 pt-20 lg:h-full lg:overflow-y-scroll lg:pb-8`}
-          >
+          <div className={`px-3 pt-20 lg:h-full lg:pb-8`}>
             <div
-              className={`basis-1/3 rounded-xl border border-[#D79128] bg-[#054432] bg-opacity-70 p-5 backdrop-blur-xl backdrop-filter`}
+              className={`basis-1/3 flex flex-col rounded-xl border border-[#D79128] bg-[#054432] bg-opacity-70 p-5 backdrop-blur-xl backdrop-filter lg:flex-row`}
             >
-              <div className={`grow-0 space-y-4 rounded-md sm:space-y-10`}>
+              <div>
+                <Image
+                  src={"/assets/eventSlug/LIR.png"}
+                  className={`relative z-10 w-full rounded-t-md sm:rounded-md`}
+                  alt={event.name}
+                  width={1000}
+                  height={1000}
+                />
+                {/*
                 {event.image && (
                   <Image
-                    src={event.image}
                     // src="https://res.cloudinary.com/dg1941jdi/image/upload/v1706863440/Events/Usaravalli_1706863437635.png"
+                    src={event.image}
                     className={`relative z-10 w-full rounded-t-md sm:rounded-md`}
                     alt={event.name}
                     width={1000}
                     height={1000}
                   />
                 )}
+                */}
+              </div>
+              <div className="lg:p-6 lg:mt-0 mt-3 flex flex-col">
                 <h1
-                  className={`px-4 pb-0 text-center PTSerif text-3xl font-bold capitalize tracking-wider sm:p-0 md:text-6xl text-[#D79128]`}
+                  className={`lg:px-4 pb-0 text-center PTSerif text-3xl font-bold capitalize tracking-wider sm:p-0 md:text-6xl text-[#D79128]`}
                 >
                   {event.name}
                 </h1>
-                <hr className="border-t-2 border-[#D79128] w-3/4 mx-auto rounded-full shadow-lg" />
-                <div className={`px-4 pb-4 sm:p-0`}>
-                  <EventDetails details={event.description ?? ""} />
-                  {/* <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum, iure natus illo alias exercitationem est quaerat asperiores ipsa, maiores placeat esse tempora libero id aperiam accusamus reiciendis atque obcaecati nisi officiis magni nostrum facilis tempore fuga! Minima officiis distinctio earum? Quis velit atque, similique, quo sunt minus fugit aperiam tempora commodi explicabo error hic temporibus qui assumenda unde dicta saepe necessitatibus obcaecati pariatur cumque provident, cupiditate officia consequatur! Quas obcaecati aspernatur nemo animi? Minus vel quis, eaque exercitationem unde dignissimos, est ipsam nihil ipsum architecto odio optio, corrupti in quidem! Minima tempore harum, quod mollitia totam inventore suscipit corrupti? Corrupti.</p> */}
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            className={`lg:no-scrollbar flex w-full shrink-0 basis-1/3 flex-col items-center gap-5 rounded-md px-3 pb-8 lg:h-full lg:overflow-y-scroll lg:pt-20`}
-          >
-            <div
-              className={`w-full rounded-xl border border-[#D79128] bg-[#054432] bg-opacity-70 p-5 backdrop-blur-xl backdrop-filter`}
-            >
-              <div>
-                <div className={`order-2 w-full space-y-1.56`}>
-                  {/* <hr className="w-48 h-1 mx-auto my-4 bg-secondary-800 border-0 rounded " /> */}
-                  <h2
-                    className={`mb-2 font-RedRose text-2xl tracking-wider md:text-4xl text-[#D79128] font-bold`}
-                  >
-                    Details
-                  </h2>
-                  <div className={`bodyFont mt-2 flex w-full flex-wrap gap-2`}>
-                    {getEventAttributes().map((attr) =>
-                      attr.text ? (
-                        <div
-                          key={attr.name}
-                          className={`md:text-md flex w-full items-center gap-2 rounded-full border border-[#D79128] p-1 px-2 text-left text-sm bg-[#D79128] bg-opacity-30`}
-                        >
-                          {<attr.Icon />}
-                          <p>
-                            {attr.name} {": "}
-                          </p>
-                          <p className={`leading-4`}>{attr.text}</p>
-                        </div>
-                      ) : (
-                        <></>
-                      ),
-                    )}
-                  </div>
-                  <div className={`text-sm`}>
-                    <div className={`grid grid-cols-1 gap-2 mt-2`}>
-                      {event.rounds.map((round) => (
-                        <div
-                          key={round.roundNo}
-                          className={`bodyFont items-center space-y-2 rounded-xl border border-[#D79128] bg-opacity-30 px-3 py-2 text-white bg-[#D79128]`}
-                        >
-                          <div className={`font-semibold`}>
-                            Round {round.roundNo}
-                          </div>
-                          <div className={`space-y-2`}>
-                            <p
-                              className={`flex items-center gap-2`}
-                              suppressHydrationWarning
-                            >
-                              <BsFillCalendar2WeekFill />
-
-                              {round.date
-                                ? new Date(round.date).toLocaleDateString(
-                                    "en-IN",
-                                    {
-                                      day: "numeric",
-                                      month: "short",
-                                    },
-                                  )
-                                : ""}
-                            </p>
-                            <p
-                              className={`flex items-center gap-2`}
-                              suppressHydrationWarning
-                            >
-                              <BiTimeFive />
-                              {round.date
-                                ? new Date(round.date).toLocaleDateString(
-                                    "en-IN",
-                                    {
-                                      hour: "numeric",
-                                      minute: "numeric",
-                                      hour12: true,
-                                    },
-                                  )
-                                : ""}
-                            </p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+                <div className={`bodyFont mt-6 flex w-full flex-wrap gap-3`}>
+                  {getEventAttributes().map((attr) =>
+                    attr.text ? (
+                      <div
+                        key={attr.name}
+                        className={`md:text-md flex w-full items-center gap-2 rounded-full border border-[#D79128] p-1 px-2 text-left text-md bg-[#D79128] bg-opacity-30`}
+                      >
+                        {<attr.Icon />}
+                        <p>
+                          {attr.name} {": "}
+                        </p>
+                        <p className={`leading-4`}>{attr.text}</p>
+                      </div>
+                    ) : (
+                      <></>
+                    ),
+                  )}
                 </div>
                 <div className={`order-1 mt-3 flex w-full justify-center`}>
                   <EventRegistration
@@ -299,59 +237,126 @@ const Page = ({ event, error }: Props) => {
                     eventId={event.id}
                     type={event.eventType}
                   />
-                  {/* <button
-                    className="bg-gradient-to-r from-[#D79128] to-[#FFD700] text-white font-semibold py-2 px-4 rounded-full shadow-lg hover:from-[#FFD700] hover:to-[#D79128] transition-all duration-300"
-                    >
-                    Register Now
-                    </button> */}
                 </div>
               </div>
             </div>
-            {event.organizers.length > 0 && (
+
+            <div className="flex flex-col pt-6 gap-5 lg:flex-row">
               <div
                 className={`w-full rounded-xl border border-[#D79128] bg-[#054432] bg-opacity-70 p-5 backdrop-blur-xl backdrop-filter`}
               >
-                <div className={`order-3 w-full`}>
-                  <h2
-                    className={`mb-2 font-VikingHell text-2xl tracking-wider md:text-4xl text-[#D79128] font-bold`}
-                  >
-                    Organizers
-                  </h2>
-                  <div className={`bodyFont w-full space-y-2`}>
-                    {event.organizers.map((organizer, idx) => (
-                      <div
-                        key={idx}
-                        className={`text-md w-full rounded-xl border border-[#D79128] p-3 text-white bg-[#D79128] bg-opacity-30`}
-                      >
-                        <h3 className={`mb-2 text-lg font-semibold`}>
-                          {organizer.user.name}
-                        </h3>
-                        <div className={`flex flex-col gap-2`}>
-                          {organizer.user.email && (
-                            <a
-                              href={`mailto:${organizer.user.email}`}
-                              className={`inline-flex items-center gap-2 overflow-x-auto text-sm hover:underline hover:underline-offset-4`}
-                            >
-                              <MdOutlineMailOutline className={`text-lg`} />{" "}
-                              {organizer.user.email}
-                            </a>
-                          )}
-                          {organizer.user.phoneNumber && (
-                            <a
-                              href={`tel:${organizer.user.phoneNumber}`}
-                              className={`inline-flex items-center gap-2 text-sm hover:underline hover:underline-offset-4`}
-                            >
-                              <BsFillTelephoneFill className={`text-lg`} />{" "}
-                              {organizer.user.phoneNumber}
-                            </a>
-                          )}
-                        </div>
-                      </div>
-                    ))}
+                <div
+                  className={`grow-0 space-y-4 rounded-md sm:space-y-10 lg:p-4`}
+                >
+                  <div className={`pb-4 sm:p-0`}>
+                    {/*<EventDetails details={event.description ?? ""} />*/}
+                    <p>
+                      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                      Laborum, iure natus illo alias exercitationem est quaerat
+                      asperiores ipsa, maiores placeat esse tempora libero id
+                      aperiam accusamus reiciendis atque obcaecati nisi officiis
+                      magni nostrum facilis tempore fuga! Minima officiis
+                      distinctio earum? Quis velit atque, similique, quo sunt
+                      minus fugit aperiam tempora commodi explicabo error hic
+                      temporibus qui assumenda unde dicta saepe necessitatibus
+                      obcaecati pariatur cumque provident, cupiditate officia
+                      consequatur! Quas obcaecati aspernatur nemo animi? Minus
+                      vel quis, eaque exercitationem unde dignissimos, est ipsam
+                      nihil ipsum architecto odio optio, corrupti in quidem!
+                      Minima tempore harum, quod mollitia totam inventore
+                      suscipit corrupti? Corrupti.
+                    </p>
                   </div>
                 </div>
+                <hr className="w-full border-t-2 border-[#D79128]" />
+                <div className={`grid grid-cols-1 gap-2 mt-4`}>
+                  {event.rounds.map((round) => (
+                    <div
+                      key={round.roundNo}
+                      className={`bodyFont items-center space-y-2 rounded-xl border border-[#D79128] bg-opacity-30 px-3 py-2 text-white bg-[#D79128]`}
+                    >
+                      <div className={`font-semibold`}>
+                        Round {round.roundNo}
+                      </div>
+                      <div className={`space-y-2`}>
+                        <p
+                          className={`flex items-center gap-2`}
+                          suppressHydrationWarning
+                        >
+                          <BsFillCalendar2WeekFill />
+
+                          {round.date
+                            ? new Date(round.date).toLocaleDateString("en-IN", {
+                                day: "numeric",
+                                month: "short",
+                              })
+                            : ""}
+                        </p>
+                        <p
+                          className={`flex items-center gap-2`}
+                          suppressHydrationWarning
+                        >
+                          <BiTimeFive />
+                          {round.date
+                            ? new Date(round.date).toLocaleDateString("en-IN", {
+                                hour: "numeric",
+                                minute: "numeric",
+                                hour12: true,
+                              })
+                            : ""}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
-            )}
+
+              {event.organizers.length > 0 && (
+                <div
+                  className={`w-full lg:w-3/4 h-fit rounded-xl border border-[#D79128] bg-[#054432] bg-opacity-70 p-5 backdrop-blur-xl backdrop-filter`}
+                >
+                  <div className={`order-3 w-full`}>
+                    <h2
+                      className={`mb-2 font-VikingHell text-2xl tracking-wider md:text-4xl text-[#D79128] font-bold`}
+                    >
+                      Organizers
+                    </h2>
+                    <div className={`bodyFont w-full space-y-2`}>
+                      {event.organizers.map((organizer, idx) => (
+                        <div
+                          key={idx}
+                          className={`text-md w-full rounded-xl border border-[#D79128] p-3 text-white bg-[#D79128] bg-opacity-30`}
+                        >
+                          <h3 className={`mb-2 text-lg font-semibold`}>
+                            {organizer.user.name}
+                          </h3>
+                          <div className={`flex flex-col gap-2`}>
+                            {organizer.user.email && (
+                              <a
+                                href={`mailto:${organizer.user.email}`}
+                                className={`inline-flex items-center gap-2 overflow-x-auto text-sm hover:underline hover:underline-offset-4`}
+                              >
+                                <MdOutlineMailOutline className={`text-lg`} />{" "}
+                                {organizer.user.email}
+                              </a>
+                            )}
+                            {organizer.user.phoneNumber && (
+                              <a
+                                href={`tel:${organizer.user.phoneNumber}`}
+                                className={`inline-flex items-center gap-2 text-sm hover:underline hover:underline-offset-4`}
+                              >
+                                <BsFillTelephoneFill className={`text-lg`} />{" "}
+                                {organizer.user.phoneNumber}
+                              </a>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </section>
       )}
