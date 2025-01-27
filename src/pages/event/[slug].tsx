@@ -194,7 +194,7 @@ const Page = ({ event, error }: Props) => {
                   width={1000}
                   height={1000}
                 />
-                {/*
+                {/*                 
                 {event.image && (
                   <Image
                     // src="https://res.cloudinary.com/dg1941jdi/image/upload/v1706863440/Events/Usaravalli_1706863437635.png"
@@ -214,13 +214,15 @@ const Page = ({ event, error }: Props) => {
                   {event.name}
                 </h1>
                 <div className={`bodyFont mt-6 flex w-full flex-wrap gap-3`}>
-                  {getEventAttributes().map((attr) =>
+                  {getEventAttributes().map((attr, i) =>
                     attr.text ? (
                       <div
-                        key={attr.name}
-                        className={`md:text-md flex w-full items-center gap-2 rounded-full border border-[#D79128] p-1 px-2 text-left text-md bg-[#D79128] bg-opacity-30`}
+                        key={i}
+                        className={`md:text-md flex w-full items-center gap-2 rounded-full border border-[#D79128] text-left text-sm bg-[#D79128] bg-opacity-30`}
                       >
-                        {<attr.Icon />}
+                        {
+                          <attr.Icon className="bg-[#D79128] rounded-full h-full w-10 p-2 text-[#002C1B]" />
+                        }
                         <p>
                           {attr.name} {": "}
                         </p>
@@ -283,7 +285,9 @@ const Page = ({ event, error }: Props) => {
                           className={`flex items-center gap-2`}
                           suppressHydrationWarning
                         >
-                          <BsFillCalendar2WeekFill />
+                          <span className="bg-[#D79128] h-full text-xl p-2 text-[#002C1B] rounded-full">
+                            <BsFillCalendar2WeekFill />
+                          </span>
 
                           {round.date
                             ? new Date(round.date).toLocaleDateString("en-IN", {
@@ -296,7 +300,9 @@ const Page = ({ event, error }: Props) => {
                           className={`flex items-center gap-2`}
                           suppressHydrationWarning
                         >
-                          <BiTimeFive />
+                          <span className="bg-[#D79128] h-full text-xl p-2 text-[#002C1B] rounded-full">
+                            <BiTimeFive />
+                          </span>
                           {round.date
                             ? new Date(round.date).toLocaleDateString("en-IN", {
                                 hour: "numeric",
@@ -336,7 +342,9 @@ const Page = ({ event, error }: Props) => {
                                 href={`mailto:${organizer.user.email}`}
                                 className={`inline-flex items-center gap-2 overflow-x-auto text-sm hover:underline hover:underline-offset-4`}
                               >
-                                <MdOutlineMailOutline className={`text-lg`} />{" "}
+                                <span className="bg-[#D79128] h-full text-xl p-2 text-[#002C1B] rounded-full">
+                                  <MdOutlineMailOutline className={`text-lg`} />{" "}
+                                </span>
                                 {organizer.user.email}
                               </a>
                             )}
@@ -345,7 +353,9 @@ const Page = ({ event, error }: Props) => {
                                 href={`tel:${organizer.user.phoneNumber}`}
                                 className={`inline-flex items-center gap-2 text-sm hover:underline hover:underline-offset-4`}
                               >
-                                <BsFillTelephoneFill className={`text-lg`} />{" "}
+                                <span className="bg-[#D79128] h-full text-xl p-2 text-[#002C1B] rounded-full">
+                                  <BsFillTelephoneFill className={`text-lg`} />{" "}
+                                </span>
                                 {organizer.user.phoneNumber}
                               </a>
                             )}
